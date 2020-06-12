@@ -15,43 +15,41 @@ void quick_sort(int *array, size_t size)
 
 void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 {
-	unsigned int i, j;
-	int pivot, swap, *left, leftsize;
+	int pivot, swap, left, right;
 
-	print_array(array, size);
+/*	print_array(array - offset, orig);*/
 	if (size <= 1)
 		return;
-	left = array;
-	leftsize = 0;
+	left = 0;
+	right = size - 2;
 	pivot = array[size - 1];
-	printf("pivot: %i\n", pivot);
-	for (i = 0; i < size; i++)
+/*	printf("pivot: %i size: %i\n", pivot,(int) size);*/
+	while (left <= right)
 	{
-/*		printf("into loop, i: %i\n", i);*/
-		if (array[i] < pivot)
+		if (array[left] < pivot)
 		{
-			/*printf("left: %i i: %i\n", leftsize, i);*/
 			left++;
-			leftsize++;
 			continue;
 		}
-		for (j = i; j < size - i; j++)
+		if (array[right] > pivot)
 		{
-			/*printf("-------------");*/
-			if (array[j] < array[i] && array[j] <= pivot)
-			{
-				printf("i: %i j: %i\n", i, j); 
-				swap = array[i];
-				array[i] = array[j];
-				array[j] = swap;
-				left++;
-				leftsize++;
-				print_array((array - offset), orig);
-			printf("the pviot is %i size: %i off%i\n", pivot,(int) orig, (int) offset);
-			}
+			right--;
+			continue;
 		}
-		
+		swap = array[left];
+		array[left] = array[right];
+		array[right] = swap;
+/*		printf("innerprint array: \n");*/
+		print_array((array - offset), orig);
 	}
-	quick_sort_rec(array, leftsize, orig, 0 + offset);
-	quick_sort_rec(left++, size - leftsize, orig, leftsize + offset);
+/*	printf("left: %i, right: %i\n", left, right);*/
+	if (array[left] != pivot)
+	{
+		swap = array[left];
+		array[left] = pivot;
+		array[size - 1] = swap;
+		print_array((array - offset), orig);
+	}
+	quick_sort_rec(array, left, orig, 0 + offset);
+	quick_sort_rec(&array[left + 1], size - left - 1, orig, 1 + left + offset);
 }
