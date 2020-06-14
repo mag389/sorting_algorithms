@@ -25,7 +25,7 @@ void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 	int pivot, swap, left, right;
 
 /*	print_array(array - offset, orig);*/
-	if (size <= 1)
+	if (size <= 1 || !array)
 		return;
 /*	print_array(array, size);*/
 	left = 0;
