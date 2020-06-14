@@ -42,8 +42,7 @@ void counting_sort(int *array, size_t size)
 		if (count_array[j] != count_array[j + 1])
 		{
 			printf("%d\n", count);
-			for (i = 0; i < size; i++)
-				final_array[i] = count;
+			final_array[j] = count;
 		}
 	}
 	print_array(final_array, size);
