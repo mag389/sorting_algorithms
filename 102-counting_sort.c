@@ -2,8 +2,9 @@
 
 void counting_sort(int *array, size_t size)
 {
-	int *count_array, *final_array, highest, lowest, number_in_original_array, j, m;
-	size_t i, k;
+	int *count_array, *final_array, highest, lowest, number_in_original_array, j, find_numbers;
+	int count;
+	size_t i;
 
 	if (size < 2)
 	{
@@ -26,12 +27,24 @@ void counting_sort(int *array, size_t size)
 	/*fill array with 0s, from 0-highest number_in_original_arrayber */
 	for (j = 0; j <= highest; j++)
 		count_array[j] = 0;
-	for (k = 0; k < size; k++)
+	for (i = 0; i < size; i++)
 	{
-		number_in_original_array = array[k];
+		number_in_original_array = array[i];
 		count_array[number_in_original_array] += 1;
 	}
-	for (m = 1; m <= highest; m++)
-		count_array[m] += count_array[m - 1];
+	for (j = 1; j <= highest; j++)
+		count_array[j] += count_array[j - 1];
 	print_array(count_array, highest + 1);
+	count = 0;
+	for (j = 0; j <= highest - 1; j++)
+	{
+		count++;
+		if (count_array[j] != count_array[j + 1])
+		{
+			printf("%d\n", count);
+			for (i = 0; i < size; i++)
+				final_array[i] = count;
+		}
+	}
+	print_array(final_array, size);
 }
