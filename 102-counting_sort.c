@@ -2,7 +2,7 @@
 
 void counting_sort(int *array, size_t size)
 {
-	int *count_array, *final_array, highest, number_in_original_array, j, m;
+	int *count_array, *final_array, highest, lowest, number_in_original_array, j, m;
 	size_t i, k;
 
 	if (size < 2)
@@ -15,6 +15,11 @@ void counting_sort(int *array, size_t size)
 	for (i = 1; i < size; i++)
 		if (array[i] > highest)
 			highest = array[i];
+	lowest = array[0];
+
+	for (i = 1; i < size; i++)
+		if (array[i] < lowest)
+			lowest = array[i];
 
 	count_array = malloc(sizeof(size_t) * (highest + 1));
 	final_array = malloc(sizeof(int) * size);
