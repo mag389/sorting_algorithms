@@ -12,7 +12,14 @@ void quick_sort(int *array, size_t size)
 	quick_sort_rec(array, size, size, 0);
 }
 
-
+/**
+* quick_sort_rec - the actual quicksort
+* Return: void
+* @array: the array to sort
+* @size: size of the array
+* @orig: the original array for printing
+* @offset: how far the right the array is from the original array
+*/
 void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 {
 	int pivot, swap, left, right;
@@ -39,6 +46,8 @@ void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 		swap = array[left];
 		array[left] = array[right];
 		array[right] = swap;
+		left++;
+		right--;
 /*		printf("innerprint array: \n");*/
 		print_array((array - offset), orig);
 	}
