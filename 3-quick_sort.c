@@ -1,5 +1,5 @@
 #include "sort.h"
-
+#include <time.h>
 void quick_sort_rec(int *ar, size_t size, size_t orig, size_t offset);
 /**
 * quick_sort - quick sorts the array
@@ -27,35 +27,48 @@ void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 /*	print_array(array - offset, orig);*/
 	if (size <= 1)
 		return;
+/*	print_array(array, size);*/
 	left = 0;
-	right = size - 2;
+	right = left + 1;
 	pivot = array[size - 1];
 /*	printf("pivot: %i size: %i\n", pivot,(int) size);*/
-	while (left <= right)
+	while (left < (int) size)
 	{
 		if (array[left] < pivot)
 		{
 			left++;
+			right++;
 			continue;
+		}
+		if (right >= (int)size - 1)
+		{
+			/*right = left + 1;*/
+			break;
 		}
 		if (array[right] > pivot)
 		{
-			right--;
+			right++;
 			continue;
 		}
-		swap = array[left];
-		array[left] = array[right];
-		array[right] = swap;
-		left++;
-		right--;
-/*		printf("innerprint array: \n");*/
-		print_array((array - offset), orig);
+		else
+		{
+			swap = array[left];
+			array[left] = array[right];
+			array[right] = swap;
+			left++;
+			right = left + 1;
+/*			printf("innerprint array: \n");*/
+/*			print_array(array, size);*/
+			print_array((array - offset), orig);
+		}
 	}
 /*	printf("left: %i, right: %i\n", left, right);*/
-	if (array[left] != pivot)
+/*	if (left != (int) size - 1)*/
+	if (right == (int) size - 1)
 	{
 		swap = array[left];
-		array[left] = pivot;
+/*		printf("swap is: %i\n", swap);*/
+		array[left] = array[size - 1];
 		array[size - 1] = swap;
 		print_array((array - offset), orig);
 	}
