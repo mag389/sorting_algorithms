@@ -41,6 +41,9 @@ void cocktail_sort_list(listint_t **list)
 			else
 				tmp = tmp->next;
 		}
+		if (swapped == 0)
+			return;
+		swapped = 0;
 		tmp = tmp->prev;
 		for (len--, i = 0; i < len; i++)
 		{
@@ -63,6 +66,8 @@ void cocktail_sort_list(listint_t **list)
 			else
 				tmp = tmp->prev;
 		}
+		if (swapped == 0)
+			return;
 		tmp = tmp->next;
 	}
 }
