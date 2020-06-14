@@ -50,7 +50,7 @@ void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 			array[left] = array[right];
 			array[right] = swap;
 			left++;
-			right = left + 1;
+			right = right + 1;
 /*			print_array(array, size);*/
 			print_array((array - offset), orig);
 		}
