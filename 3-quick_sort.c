@@ -44,16 +44,13 @@ void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 			right++;
 			continue;
 		}
-		else
-		{
-			swap = array[left];
-			array[left] = array[right];
-			array[right] = swap;
-			left++;
-			right = right + 1;
-/*			print_array(array, size);*/
-			print_array((array - offset), orig);
-		}
+		swap = array[left];
+		array[left] = array[right];
+		array[right] = swap;
+		left++;
+		right = right + 1;
+/*		print_array(array, size);*/
+		print_array((array - offset), orig);
 	}
 /*	printf("left: %i, right: %i\n", left, right);*/
 	if (right == (int) size - 1)
