@@ -1,5 +1,22 @@
 #include "sort.h"
 /**
+ * list_length - returns the length of a linked list
+ * @h: the list
+ *
+ * Return: length of list
+ */
+int list_length(listint_t *h)
+{
+	int len = 0;
+
+	while (h)
+	{
+		len++;
+		h = h->next;
+	}
+	return (len);
+}
+/**
  * insertion_sort_list- sorts a list using insertion method
  * @list: pointer to the list
  */
@@ -8,6 +25,14 @@ void insertion_sort_list(listint_t **list)
 	listint_t *node;
 
 	node = (*list)->next;
+
+	if (!list || !*list)
+		return;
+	if (list_length(*list) < 2)
+	{
+		print_list(*list);
+		return;
+	}
 
 	while (node)
 	{
