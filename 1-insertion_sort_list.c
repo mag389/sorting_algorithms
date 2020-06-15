@@ -1,13 +1,14 @@
 #include "sort.h"
 /**
- * len_list - returns the length of list
- * @h: pointer to the list
+ * list_length- returns the length of list
+ * @head: pointer to the list
  *
  * Return: length of list
  */
 int list_length(listint_t *head)
 {
 	int len = 0;
+
 	while (head != NULL)
 	{
 		len++;
@@ -17,7 +18,7 @@ int list_length(listint_t *head)
 }
 /**
  * insertion_sort_list - sorts a linked list
- * @list: double pointer to the list to sort
+ * @list: pointer to the list to sort
  */
 void insertion_sort_list(listint_t **list)
 {
