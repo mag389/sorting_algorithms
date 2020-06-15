@@ -36,14 +36,12 @@ void counting_sort(int *array, size_t size)
 		count_array[j] += count_array[j - 1];
 	print_array(count_array, highest + 1);
 	count = 0;
-	for (j = 0; j <= highest - 1; j++)
+	for (i = 0; i < size; i++)
 	{
-		count++;
-		if (count_array[j] != count_array[j + 1])
-		{
-			printf("%d\n", count);
-			final_array[j] = count;
-		}
+		final_array[count_array[array[i]] - 1] = array[i];
 	}
-	print_array(final_array, size);
+	for (i = 0; i < size; i++)
+		array[i] = final_array[i];
+	free(final_array);
+	free(count_array);
 }
