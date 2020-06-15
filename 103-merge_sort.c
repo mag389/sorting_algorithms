@@ -43,7 +43,7 @@ void topdownmerge(int *array, size_t size, int *b, size_t bsize)
 	topdownmerge(b, midpoint, array, midpoint);
 	topdownmerge((b + midpoint), size - midpoint, (array + midpoint), 0);
 
-	printf("merging...\n[left]: ");
+	printf("Merging...\n[left]: ");
 	print_array(array, midpoint);
 	printf("[right]: ");
 	print_array((array + midpoint), size - midpoint);
