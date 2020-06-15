@@ -31,7 +31,7 @@ void insertion_sort_list(listint_t **list)
 		print_list(*list);
 		return;
 	}
-	while (list)
+	while (1)
 	{
 		while (current->next && current->n < current->next->n)
 			current = current->next;
