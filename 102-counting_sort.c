@@ -1,4 +1,9 @@
 #include "sort.h"
+/**
+* counting_sort - returns array using counting sort
+* @array:-the array
+* @size:-size of array
+*/
 
 void counting_sort(int *array, size_t size)
 {
@@ -11,20 +16,12 @@ void counting_sort(int *array, size_t size)
 		print_array(array, size);
 		return;
 	}
-
 	highest = array[0];
 	for (i = 1; i < size; i++)
 		if (array[i] > highest)
 			highest = array[i];
-	lowest = array[0];
-
-	for (i = 1; i < size; i++)
-		if (array[i] < lowest)
-			lowest = array[i];
-
 	count_array = malloc(sizeof(size_t) * (highest + 1));
 	final_array = malloc(sizeof(int) * size);
-	/*fill array with 0s, from 0-highest number_in_original_arrayber */
 	for (j = 0; j <= highest; j++)
 		count_array[j] = 0;
 	for (i = 0; i < size; i++)
