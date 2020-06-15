@@ -22,6 +22,14 @@ int list_length(listint_t *head)
 void insertion_sort_list(listint_t **list)
 {
 	listint_t *current = *list, *temp_one, *temp_two, *temp_three, *temp_four;
+
+	if (!list || !*list)
+		return;
+	if (list_length(*list) < 2)
+	{
+		print_list(*list);
+		return;
+	}
 	while (list)
 	{
 		while (current->next && current->n < current->next->n)
