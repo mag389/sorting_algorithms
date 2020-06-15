@@ -23,15 +23,16 @@ void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 {
 	int pivot, swap, left = 0, right;
 
+/*	printf("original array");*/
 /*	print_array(array - offset, orig);*/
 	if (size <= 1 || !array)
 		return;
 	right = left + 1;
 	pivot = array[size - 1];
 /*	printf("pivot: %i size: %i\n", pivot,(int) size);*/
-	while (left < (int) size)
+	while (left < (int) size - 1)
 	{
-		if (array[left] < pivot)
+		if (array[left] <= pivot)
 		{
 			left++;
 			right++;
@@ -49,11 +50,12 @@ void quick_sort_rec(int *array, size_t size, size_t orig, size_t offset)
 		array[right] = swap;
 		left++;
 		right = right + 1;
+/*		printf("partial array");*/
 /*		print_array(array, size);*/
 		print_array((array - offset), orig);
 	}
 /*	printf("left: %i, right: %i\n", left, right);*/
-	if (right == (int) size - 1)
+	if (right == (int) size - 1 && array[left] > pivot)
 	{
 		swap = array[left];
 /*		printf("swap is: %i\n", swap);*/
