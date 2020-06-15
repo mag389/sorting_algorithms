@@ -28,11 +28,6 @@ void insertion_sort_list(listint_t **list)
 
 	if (!list || !*list)
 		return;
-	if (list_length(*list) < 2)
-	{
-		print_list(*list);
-		return;
-	}
 
 	while (node)
 	{
