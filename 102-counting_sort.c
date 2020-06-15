@@ -2,7 +2,7 @@
 
 void counting_sort(int *array, size_t size)
 {
-	int *count_array, *final_array, highest, lowest, number_in_original_array, j, find_numbers;
+	int *count_array, *final_array, highest, lowest, number_in_original_array, j;
 	int count;
 	size_t i;
 
