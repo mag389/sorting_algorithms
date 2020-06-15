@@ -1,5 +1,7 @@
 #include "sort.h"
-void swap_forward(listint_t *list);
+void swap_forward(listint_t **tmp, listint_t **list);
+void print_back(listint_t **head);
+void print_backwards(listint_t **head);
 /**
 * cocktail_sort_list - cocktail sorts the list
 * Return: void
@@ -24,7 +26,7 @@ void cocktail_sort_list(listint_t **list)
 /*			printf("len: %i i: %i\n", len, i);*/
 			if (tmp->n > tmp->next->n)
 			{
-				swap_forward(tmp);
+				swap_forward(&tmp, list);
 /*
 *				tmp->next->prev = tmp->prev;
 *				if (tmp->prev)
@@ -62,6 +64,7 @@ void cocktail_sort_list(listint_t **list)
 					tmp->prev->next = tmp;
 				swapped = 1;
 				print_list(*list);
+				/*print_back(list);*/
 			}
 			else
 				tmp = tmp->prev;
@@ -75,16 +78,43 @@ void cocktail_sort_list(listint_t **list)
 /**
 * swap_forward - swaps dlist node with next
 * Return: void
+* @list: the list, for if the head changes
 * @tmp: the node to swap with it's next
 */
-void swap_forward(listint_t *tmp)
+void swap_forward(listint_t **tmp, listint_t **list)
 {
-	tmp->next->prev = tmp->prev;
-	if (tmp->prev)
-		tmp->prev->next = tmp->next;
-	tmp->prev = tmp->next;
-	tmp->next = tmp->prev->next;
-	tmp->prev->next = tmp;
-	if (tmp->next)
-		tmp->next->prev = tmp;
+	(*tmp)->next->prev = (*tmp)->prev;
+	if ((*tmp)->prev)
+		(*tmp)->prev->next = (*tmp)->next;
+	(*tmp)->prev = (*tmp)->next;
+	(*tmp)->next = (*tmp)->prev->next;
+	(*tmp)->prev->next = (*tmp);
+	if ((*tmp)->next)
+		(*tmp)->next->prev = (*tmp);
+	if ((*tmp)->prev->prev == NULL)
+		*list = (*tmp)->prev;
+}
+
+/**
+* print_back - prints back
+* Return: void
+* @head: the head node
+*/
+void print_back(listint_t **head)
+{
+	if ((*head)->next)
+		print_back(&(*head)->next);
+	else
+		print_backwards(head);
+}
+/**
+* print_backwards - prints back from the tail
+* Return: void
+* @tail: the tail node
+*/
+void print_backwards(listint_t **tail)
+{
+	printf("%i ", (*tail)->n);
+	if ((*tail)->prev)
+		print_backwards(&(*tail)->prev);
 }
