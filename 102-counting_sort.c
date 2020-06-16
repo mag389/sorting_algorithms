@@ -8,7 +8,6 @@
 void counting_sort(int *array, size_t size)
 {
 	int *count_array, *final_array, highest, number_in_original_array, j;
-	int count;
 	size_t i;
 
 	if (size < 2)
@@ -32,10 +31,10 @@ void counting_sort(int *array, size_t size)
 	for (j = 1; j <= highest; j++)
 		count_array[j] += count_array[j - 1];
 	print_array(count_array, highest + 1);
-	count = 0;
 	for (i = 0; i < size; i++)
 	{
 		final_array[count_array[array[i]] - 1] = array[i];
+		count_array[array[i]]--;
 	}
 	for (i = 0; i < size; i++)
 		array[i] = final_array[i];
