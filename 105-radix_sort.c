@@ -22,7 +22,7 @@ void radix_sort(int *array, size_t size)
 */
 void radix_sort_r(int *array, size_t size, int step)
 {
-	int *work, i, j, workindex = 0, w = 0;
+	int *work, i, j, workindex = 0, w = 0, digit = 0;
 
 /*	if (step > 1000)		return;*/
 /*	printf("size is: %i  step: %i\n", (int)size, step);*/
@@ -31,6 +31,8 @@ void radix_sort_r(int *array, size_t size, int step)
 		return;
 	for (j = 0; j < 10; j++)
 	{
+		if (array[i] / step > 0)
+			digit = 1;
 		for (i = 0; i < (int)size; i++)
 		{
 /*			printf("number: %i, reduced: %i == %i\n",*/
@@ -50,7 +52,7 @@ void radix_sort_r(int *array, size_t size, int step)
 			array[i] = work[i], w = 1;
 /*	print_array(work, size);*/
 	free(work);
-	if (w != 0)
+	if (w != 0 || digit != 0)
 	{
 		print_array(array, size);
 		radix_sort_r(array, size, step * 10);
