@@ -52,8 +52,8 @@ void quick_sort_hrec(int *array, size_t size, size_t orig, size_t offset)
 		array[left] = array[right];
 		array[right] = swap;
 		left++;
-		if (right != (int)size - 1)
-			right--;
+/*		if (right != (int)size - 1)*/
+		right--;
 /*
 *		printf("innerprint array: ");
 *		printf("left: %i, %i,  num:%i,r num %i -- %i\n",
