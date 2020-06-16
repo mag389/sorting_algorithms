@@ -27,6 +27,8 @@ void radix_sort_r(int *array, size_t size, int step)
 /*	if (step > 1000)		return;*/
 /*	printf("size is: %i  step: %i\n", (int)size, step);*/
 	work = malloc(size * sizeof(int));
+	if (work == NULL)
+		return;
 	for (j = 0; j < 10; j++)
 	{
 		for (i = 0; i < (int)size; i++)
