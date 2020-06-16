@@ -10,8 +10,11 @@ void print_backwards(listint_t **head);
 void cocktail_sort_list(listint_t **list)
 {
 	int swapped = 1, len = 0, i;
-	listint_t *tmp = *list;
+	listint_t *tmp;
 
+	if (list == NULL)
+		return;
+	tmp = *list;
 	while (tmp)
 	{
 		tmp = tmp->next;
@@ -27,18 +30,10 @@ void cocktail_sort_list(listint_t **list)
 			if (tmp->n > tmp->next->n)
 			{
 				swap_forward(&tmp, list);
-/*
-*				tmp->next->prev = tmp->prev;
-*				if (tmp->prev)
-*					tmp->prev->next = tmp->next;
-*				tmp->prev = tmp->next;
-*				tmp->next = tmp->prev->next;
-*				tmp->prev->next = tmp;
-*				if (tmp->next)
-*					tmp->next->prev = tmp;
-*/
 				swapped = 1;
 				print_list(*list);
+/*				printf("---");*/
+/*				print_back(list);*/
 			}
 			else
 				tmp = tmp->next;
@@ -53,6 +48,7 @@ void cocktail_sort_list(listint_t **list)
 			if (tmp->n < tmp->prev->n)
 			{
 /*				printf("the n is %i\n", tmp->n);*/
+
 				tmp->prev->next = tmp->next;
 				tmp->next->prev = tmp->prev;
 				tmp->next = tmp->prev;
@@ -62,9 +58,12 @@ void cocktail_sort_list(listint_t **list)
 					*list = tmp;
 				else
 					tmp->prev->next = tmp;
+
+/*				swap_forward(*(tmp->prev), list);*/
 				swapped = 1;
 				print_list(*list);
-				/*print_back(list);*/
+/*				printf("---");*/
+/*				print_back(list);*/
 			}
 			else
 				tmp = tmp->prev;
@@ -87,10 +86,10 @@ void swap_forward(listint_t **tmp, listint_t **list)
 	if ((*tmp)->prev)
 		(*tmp)->prev->next = (*tmp)->next;
 	(*tmp)->prev = (*tmp)->next;
-	(*tmp)->next = (*tmp)->prev->next;
-	(*tmp)->prev->next = (*tmp);
+	(*tmp)->next = (*tmp)->next->next;
 	if ((*tmp)->next)
 		(*tmp)->next->prev = (*tmp);
+	(*tmp)->prev->next = (*tmp);
 	if ((*tmp)->prev->prev == NULL)
 		*list = (*tmp)->prev;
 }
