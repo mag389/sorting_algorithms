@@ -31,7 +31,7 @@ void radix_sort_r(int *array, size_t size, int step)
 		return;
 	for (j = 0; j < 10; j++)
 	{
-		if (array[i] / step > 0)
+		if (array[i] / step >= 10)
 			digit = 1;
 		for (i = 0; i < (int)size; i++)
 		{
