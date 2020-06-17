@@ -26,9 +26,8 @@ void insertion_sort_list(listint_t **list)
 
 	node = (*list)->next;
 
-	if (!list || !*list)
+	if (!list || !*list || !(*list)->next)
 		return;
-
 	while (node)
 	{
 		while ((node->prev != NULL) && (node->prev->n > node->n))
