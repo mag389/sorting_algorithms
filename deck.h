@@ -3,6 +3,8 @@
 #define DECK_H
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
 /**
  * enum kind_e - suit enumeration
@@ -15,9 +17,9 @@
 typedef enum kind_e
 {
 	SPADE = 0,
-	HEART,
-	CLUB,
-	DIAMOND
+	HEART = 1,
+	CLUB = 2,
+	DIAMOND = 3
 } kind_t;
 
 /**
