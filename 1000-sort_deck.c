@@ -64,36 +64,36 @@ int get_card_value(const char *s)
 void sort_deck(deck_node_t **deck)
 {
 	char swapped = 1, card, next, previous;
-	deck_node_t *current;
+	deck_node_t *c;
 
 	if (deck == NULL || *deck == NULL || (*deck)->next == NULL)
 		return;
-	current = *deck;
+	c = *deck;
 	while (swapped != 0)
 	{
 		swapped = 0;
-		while (current->next)
+		while (c->next)
 		{
-			card = get_card_value(current->card->value) + 20 * current->card->kind;
-			next = get_card_value(current->next->card->value) + 20 * current->next->card->kind;
+			card = get_card_value(c->card->value) + 20 * c->card->kind;
+			next = get_card_value(c->next->card->value) + 20 * c->next->card->kind;
 			if (card > next)
 			{
-				swap_cards(deck, current);
+				swap_cards(deck, c);
 			}
 			if (card < next)
-				current = current->next;
+				c = c->next;
 		}
-		while (current->prev)
+		while (c->prev)
 		{
-			card = get_card_value(current->card->value) + 20 * current->card->kind;
-			previous = get_card_value(current->prev->card->value) + 20 * current->prev->card->kind;
+			card = get_card_value(c->card->value) + 20 * c->card->kind;
+			previous = get_card_value(c->prev->card->value) + 20 * c->prev->card->kind;
 			if (card < previous)
 			{
-				swap_cards(deck, current->prev);
+				swap_cards(deck, c->prev);
 				swapped = 1;
 			}
 			if (card > previous)
-				current = current->prev;
+				c = c->prev;
 		}
 	}
 }
